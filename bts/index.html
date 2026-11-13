@@ -785,10 +785,48 @@
         outline: 2px solid var(--text);
         outline-offset: 3px;
       }
-      .store {
+      .get-copy {
+        margin: 0 0 16px;
+        font-size: 15px;
+        color: var(--body);
+      }
+      /* Official store badges, same height, unaltered (Apple and Google badge guidelines) */
+      .stores {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 12px;
+      }
+      .stores a {
         display: block;
-        margin-top: 16px;
-        font-size: 14px;
+        border-radius: 9px;
+        -webkit-tap-highlight-color: transparent;
+        transition: transform 0.2s var(--ease);
+      }
+      .stores a:hover {
+        transform: translateY(-1px);
+      }
+      .stores a:active {
+        transform: scale(0.97);
+      }
+      .stores a:focus-visible {
+        outline: 2px solid var(--green);
+        outline-offset: 3px;
+      }
+      .stores img {
+        width: auto;
+        height: 46px;
+      }
+      .closing .stores {
+        justify-content: center;
+        gap: 10px;
+      }
+      .closing .stores img {
+        height: 42px;
+      }
+      .closing-card .or {
+        margin: 22px 0 12px;
+        font: 500 12px/1 var(--mono);
         color: var(--muted);
       }
       .fine {
@@ -920,7 +958,7 @@
           </p>
           <ul class="facts" data-reveal style="--d: 0.28s" aria-label="Offer details">
             <li>150 spots</li>
-            <li>Ends 31 Jan</li>
+            <li>Any plan</li>
             <li>iPhone for now</li>
           </ul>
         </section>
@@ -999,6 +1037,22 @@
             Each plan opens the App Store with the discount already applied. You can also type the code in
             the App Store: tap your profile picture, then Redeem Gift Card or Code.
           </p>
+        </section>
+
+        <section class="get" aria-labelledby="get-title">
+          <p class="kicker" id="get-title" data-reveal><b>//</b> or just download it</p>
+          <p class="get-copy" data-reveal>
+            Not ready to pick a plan? quant blitz is free to download on iPhone and Android, and you can come
+            back here to redeem the offer while spots last.
+          </p>
+          <div class="stores" data-reveal>
+          <a href="https://apps.apple.com/gb/app/quant-blitz-interview-prep/id6820223409"
+            ><img src="../img/badge-app-store.svg" alt="Download on the App Store" width="138" height="46"
+          /></a>
+          <a href="https://play.google.com/store/apps/details?id=com.qdevblitz.app"
+            ><img src="../img/badge-google-play.png" alt="Get it on Google Play" width="154" height="46"
+          /></a>
+        </div>
         </section>
 
         <section class="try" aria-labelledby="try-title">
@@ -1103,14 +1157,20 @@
           >Pick your plan
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5.5 11.5 12 5l6.5 6.5" /></svg
         ></a>
-        <a class="store" href="https://apps.apple.com/gb/app/quant-blitz-interview-prep/id6820223409"
-          >See quant blitz on the App Store ↗</a
-        >
+        <p class="or">or download it free</p>
+        <div class="stores">
+          <a href="https://apps.apple.com/gb/app/quant-blitz-interview-prep/id6820223409"
+            ><img src="../img/badge-app-store.svg" alt="Download on the App Store" width="138" height="46"
+          /></a>
+          <a href="https://play.google.com/store/apps/details?id=com.qdevblitz.app"
+            ><img src="../img/badge-google-play.png" alt="Get it on Google Play" width="154" height="46"
+          /></a>
+        </div>
       </div>
       <p class="fine">
         If Premium doesn't show after opening the app, go to Profile → Restore purchases. One redemption per
-        Apple ID. Prices outside the UK are the local equivalent. The offer ends on 31 January 2027, or earlier
-        once 150 members have claimed it. iPhone for now, Android soon.
+        Apple ID. Prices outside the UK are the local equivalent. The offer ends once 150 members have claimed
+        it. iPhone for now, Android soon.
       </p>
     </section>
 
