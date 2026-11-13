@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>10 brain teasers you will be asked in quant interviews</title>
+    <meta
+      name="description"
+      content="The ten brain teasers that come up most in quant trading interviews, ranked by how often, each with a full solution: the airplane seat, 25 horses, two eggs, burning ropes, Monty Hall, coin flips, the die with a re-roll and more."
+    />
+    <link rel="canonical" href="https://quantblitz.app/brain-teasers/" />
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="../favicon.png" type="image/png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="../apple-touch-icon.png" />
+    <meta name="theme-color" content="#0b0f14" />
+    <meta name="apple-itunes-app" content="app-id=6820223409" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="10 brain teasers you will be asked in quant interviews" />
+    <meta
+      property="og:description"
+      content="Ranked by how often they come up, each with a full solution. Try each one before you open the answer."
+    />
+    <meta property="og:url" content="https://quantblitz.app/brain-teasers/" />
+    <meta property="og:image" content="https://quantblitz.app/img/quant-blitz-path.jpg" />
+    <link
+      rel="preload"
+      href="../fonts/space-grotesk-700.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="stylesheet" href="../resource.css" />
+  </head>
+  <body>
+    <main>
+      <a class="qb" href="https://quantblitz.app/"
+        ><img src="../img/quant-blitz.png" alt="" width="28" height="28" />quant
+        <span>blitz_</span></a
+      >
+
+      <p class="eyebrow">Free resource</p>
+      <h1>10 brain teasers you will be asked in quant interviews</h1>
+      <p class="lede">
+        Ranked by how often they come up in trading and research interviews. The interviewer doesn't
+        care whether you've seen the puzzle. They care whether you can explain the reasoning out
+        loud. Try each one before you open the answer.
+      </p>
+
+      <h2><span class="n">1</span>The airplane seat</h2>
+      <div class="card">
+        <p class="q">
+          100 passengers board a full plane in order. The first has lost their boarding pass and
+          sits in a random seat. Everyone after sits in their own seat if it's free, otherwise in a
+          random free seat. What's the probability the last passenger gets their own seat?
+        </p>
+        <details>
+          <summary>Solution</summary>
+          <p class="ans">1/2.</p>
+          <p>
+            Whenever a displaced passenger picks at random, the only two seats that decide the
+            outcome are seat 1 and seat 100: picking any other seat just passes the problem on.
+            Those two seats are always equally likely to be chosen at that moment, so by the time
+            passenger 100 boards, exactly one of them is free, with equal probability. It doesn't
+            matter how many passengers there are.
+          </p>
+        </details>
+      </div>
+
+      <h2><span class="n">2</span>25 horses</h2>
+      <div class="card">
+        <p class="q">
+          You have 25 horses and a track for 5. No stopwatch, you only see the order. What is the
+          minimum number of races to find the fastest 3?
+        </p>
+        <details>
+          <summary>Solution</summary>
+          <p class="ans">7 races.</p>
+          <p>
+            Race five groups of five (5 races), then race the five winners (race 6). The winner of
+            race 6 is the fastest overall. Only five horses can still be 2nd or 3rd: the 2nd and 3rd
+            from race 6, the 2nd and 3rd from the overall winner's original group, and the 2nd from
+            the group of the horse that came 2nd in race 6. Race those five (race 7): its top two
+            are 2nd and 3rd overall. Six races can't be enough, because after six you can't have
+            separated all of those candidates.
+          </p>
+        </details>
+      </div>
+
+      <h2><span class="n">3</span>Two eggs, 100 floors</h2>
+      <div class="card">
+        <p class="q">
+          There is a floor above which an egg breaks when dropped and below which it never does. You
+          have two eggs. What's the fewest drops that guarantees you find the floor?
+        </p>
+        <details>
+          <summary>Solution</summary>
+          <p class="ans">14.</p>
+          <p>
+            Drop the first egg at floor n, then n + (n − 1), then n + (n − 1) + (n − 2), and so on,
+            so that each time it breaks you have exactly enough drops left to scan the gap one floor
+            at a time with the second egg. You need n + (n − 1) + … + 1 ≥ 100, so n(n + 1)/2 ≥ 100:
+            n = 14 gives 105, n = 13 gives only 91. Drops at 14, 27, 39, 50, 60, 69, 77, 84, 90, 95,
+            99, 100.
+          </p>
+        </details>
+      </div>
+
+      <h2><span class="n">4</span>Burning ropes</h2>
+      <div class="card">
+        <p class="q">
+          Two ropes each take exactly 60 minutes to burn, but they burn unevenly, so half a rope
+          doesn't take 30 minutes. Measure 45 minutes.
+        </p>
+        <details>
+          <summary>Solution</summary>
+          <p class="ans">
+            Light rope A at both ends and rope B at one end. When A is gone, light B's other end.
+          </p>
+          <p>
+            A lit at both ends burns out in exactly 30 minutes however uneven it is. At that moment
+            B has 30 minutes of burning left; lighting its other end halves that to 15. Total: 45.
+            The idea to say out loud: lighting both ends always halves the remaining time.
+          </p>
+        </details>
+      </div>
+
+      <h2><span class="n">5</span>Monty Hall</h2>
+      <div class="card">
+        <p class="q">
+          Three doors, one prize. You pick a door. The host, who knows where the prize is, opens
+          another door showing nothing, and offers you a switch. Switch or stay?
+        </p>
+        <details>
+          <summary>Solution</summary>
+          <p class="ans">Switch. It wins 2/3 of the time.</p>
+          <p>
+            Your first pick is right with probability 1/3 and that never changes, because the host
+            can always open an empty door whatever you picked. So the prize is behind the other
+            unopened door with probability 2/3. The follow-up they like: with 100 doors and the host
+            opening 98, switching wins 99/100.
+          </p>
+        </details>
+      </div>
+
+      <h2><span class="n">6</span>Flipping for two heads</h2>
+      <div class="card">
+        <p class="q">
+          Flip a fair coin until you get two heads in a row. What's the expected number of flips?
+          And for a head followed by a tail?
+        </p>
+        <details>
+          <summary>Solution</summary>
+          <p class="ans">6 for HH, 4 for HT.</p>
+          <p>
+            Let E be the expected flips from scratch and F the expected flips once you hold one
+            head. E = 1 + ½F + ½E, and F = 1 + ½·0 + ½E (a tail sends you back to the start). Solve:
+            F = 1 + E/2 and E = 2 + F give E = 6. For HT, once you hold a head another head doesn't
+            hurt you: F = 1 + ½·0 + ½F so F = 2, and E = 2 + F = 4. Progress towards HT is never
+            undone, which is why it's faster.
+          </p>
+        </details>
+      </div>
+
+      <h2><span class="n">7</span>The die with a re-roll</h2>
+      <div class="card">
+        <p class="q">
+          You roll a die and get paid its face value. Before you're paid, you may re-roll once and
+          take the new value instead. What's the game worth? And with two re-rolls?
+        </p>
+        <details>
+          <summary>Solution</summary>
+          <p class="ans">4.25 with one re-roll, 4.67 with two.</p>
+          <p>
+            A plain roll is worth 3.5. With one re-roll, keep anything above 3.5, so keep 4, 5, 6
+            and re-roll 1, 2, 3: (4 + 5 + 6)/6 + (3/6)(3.5) = 2.5 + 1.75 = 4.25. With two re-rolls,
+            the first roll is worth 4.25 if you give it up, so now keep only 5 and 6: (5 + 6)/6 +
+            (4/6)(4.25) = 1.833 + 2.833 = 4.67. Work backwards from the last roll. This is the whole
+            idea behind pricing an option to re-decide.
+          </p>
+        </details>
+      </div>
+
+      <h2><span class="n">8</span>The bridge at night</h2>
+      <div class="card">
+        <p class="q">
+          Four people must cross a bridge at night with one torch. At most two cross at a time, and
+          a pair moves at the slower one's speed. They take 1, 2, 5 and 10 minutes. Fastest total?
+        </p>
+        <details>
+          <summary>Solution</summary>
+          <p class="ans">17 minutes.</p>
+          <p>
+            1 and 2 cross (2), 1 returns (1), 5 and 10 cross together (10), 2 returns (2), 1 and 2
+            cross (2). The trick is sending the two slow ones together so the 10 is paid once and
+            the 5 is never paid at all. Escorting each slow person with the fastest costs 19.
+          </p>
+        </details>
+      </div>
+
+      <h2><span class="n">9</span>Russian roulette</h2>
+      <div class="card">
+        <p class="q">
+          A six-chamber revolver holds two bullets in adjacent chambers. Your opponent spins, pulls
+          the trigger and survives. It's your turn: spin again or pull straight away?
+        </p>
+        <details>
+          <summary>Solution</summary>
+          <p class="ans">Don't spin: 1/4 risk instead of 1/3.</p>
+          <p>
+            Spinning gives 2 bullets in 6 chambers: 1/3. Without spinning, you know the last chamber
+            was one of the four empty ones, and only one of those four is followed by a bullet, so
+            the risk is 1/4. If the bullets were not adjacent, two of the four empties would be
+            followed by a bullet and it would be 1/2, so you'd spin. Conditional probability,
+            dressed up.
+          </p>
+        </details>
+      </div>
+
+      <h2><span class="n">10</span>Ants on a stick</h2>
+      <div class="card">
+        <p class="q">
+          100 ants sit at random points on a 1-metre stick, each facing a random direction. They
+          walk at 1 cm per second, and when two meet they both turn around. What's the longest it
+          can take for all of them to fall off?
+        </p>
+        <details>
+          <summary>Solution</summary>
+          <p class="ans">100 seconds.</p>
+          <p>
+            Two identical ants bouncing off each other is indistinguishable from two ants walking
+            straight through each other. So the stick clears at the time the furthest ant from its
+            exit would take to walk off unhindered: at most 100 cm at 1 cm/s. The positions and
+            directions don't matter.
+          </p>
+        </details>
+      </div>
+
+      <section class="cta">
+        <h2>Explained questions, every day</h2>
+        <p>
+          quant blitz has 1,424 questions on brainteasers, probability, market making, options,
+          mental maths and C++, in short daily lessons with a review queue for what you miss. Free
+          to start.
+        </p>
+        <div class="stores">
+          <a
+            class="store"
+            href="https://apps.apple.com/gb/app/quant-blitz-interview-prep/id6820223409"
+            >App Store</a
+          >
+          <a
+            class="store play"
+            href="https://play.google.com/store/apps/details?id=com.qdevblitz.app"
+            >Google Play</a
+          >
+        </div>
+      </section>
+    </main>
+    <footer>
+      <p><a href="https://quantblitz.app/">quantblitz.app</a></p>
+      <p>© 2026 Velori Labs Ltd</p>
+    </footer>
+  </body>
+</html>

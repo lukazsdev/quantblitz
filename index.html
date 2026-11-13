@@ -1,47 +1,258 @@
 <!doctype html>
-<html lang="en">
+<html lang="en-GB">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>quant blitz · support</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>quant blitz: quant interview prep</title>
     <meta
       name="description"
-      content="quant blitz: short lessons and speed drills for quant trading and quant developer interviews."
+      content="Quant interview prep in a few minutes a day: probability, mental maths, brainteasers, market making, options and C++, every answer explained. Free on the App Store."
     />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="canonical" href="https://quantblitz.app/" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="favicon.png" type="image/png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    <meta name="theme-color" content="#0b0f14" />
+    <meta name="apple-itunes-app" content="app-id=6820223409" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="quant blitz: quant interview prep" />
+    <meta property="og:url" content="https://quantblitz.app/" />
+    <meta property="og:image" content="https://quantblitz.app/img/quant-blitz-path.jpg" />
+    <link
+      rel="preload"
+      href="fonts/space-grotesk-700.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <style>
+      @font-face {
+        font-family: 'Space Grotesk';
+        src: url('fonts/space-grotesk-700.woff2') format('woff2');
+        font-weight: 700;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: 'Inter';
+        src: url('fonts/inter-400.woff2') format('woff2');
+        font-weight: 400;
+        font-display: swap;
+      }
+      /* The app's dark theme (src/theme/colors.ts). */
+      :root {
+        color-scheme: dark;
+        --bg: #0b0f14;
+        --surface: #141a23;
+        --line: #232c38;
+        --text: #e8edf2;
+        --muted: #8a96a3;
+        --accent: #00d68f;
+        --on-accent: #0b0f14;
+      }
+      html {
+        -webkit-text-size-adjust: 100%;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font:
+          400 16px/1.55 'Inter',
+          system-ui,
+          -apple-system,
+          sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+      main {
+        box-sizing: border-box;
+        max-width: 480px;
+        margin: 0 auto;
+        padding: max(40px, env(safe-area-inset-top)) 20px 24px;
+      }
+      .hero {
+        text-align: center;
+      }
+      .icon {
+        display: block;
+        margin: 0 auto 16px;
+        border-radius: 18px;
+      }
+      h1 {
+        margin: 0;
+        font:
+          700 36px/1.1 'Space Grotesk',
+          'Inter',
+          sans-serif;
+        letter-spacing: -0.03em;
+      }
+      .lede {
+        margin: 10px 0 20px;
+        font-size: 18px;
+        text-wrap: balance;
+      }
+      .lede strong {
+        color: var(--accent);
+        font-weight: 400;
+      }
+      ul {
+        margin: 0 0 24px;
+        padding: 16px 18px;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        background: var(--surface);
+        list-style: none;
+        text-align: left;
+      }
+      li {
+        position: relative;
+        padding-left: 22px;
+      }
+      li + li {
+        margin-top: 8px;
+      }
+      li::before {
+        content: '';
+        position: absolute;
+        left: 2px;
+        top: 0.62em;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--accent);
+      }
+      .download {
+        display: block;
+        padding: 16px 20px;
+        border-radius: 14px;
+        background: var(--accent);
+        color: var(--on-accent);
+        font:
+          700 18px/1.2 'Space Grotesk',
+          'Inter',
+          sans-serif;
+        text-decoration: none;
+      }
+      .download.play {
+        margin-top: 10px;
+        background: transparent;
+        color: var(--text);
+        border: 1px solid var(--line);
+      }
+      .download:focus-visible {
+        outline: 2px solid var(--text);
+        outline-offset: 3px;
+      }
+      .note {
+        margin: 10px 0 28px;
+        color: var(--muted);
+        font-size: 14px;
+      }
+      .shot {
+        display: block;
+        width: 100%;
+        max-width: 320px;
+        height: auto;
+        margin: 0 auto 40px;
+        border-radius: 24px;
+      }
+      h2 {
+        margin: 0 0 8px;
+        padding-top: 20px;
+        border-top: 1px solid var(--line);
+        font:
+          700 20px/1.2 'Space Grotesk',
+          'Inter',
+          sans-serif;
+        letter-spacing: -0.02em;
+      }
+      p {
+        margin: 0 0 12px;
+      }
+      .support ul {
+        margin-bottom: 28px;
+      }
+      .support li strong {
+        font-weight: 400;
+        color: var(--text);
+      }
+      .support li {
+        color: var(--muted);
+      }
+      a {
+        color: var(--accent);
+      }
+      .legal a + a {
+        margin-left: 16px;
+      }
+      footer {
+        padding: 24px 20px max(24px, env(safe-area-inset-bottom));
+        color: var(--muted);
+        font-size: 13px;
+        text-align: center;
+      }
+      footer p {
+        margin: 0;
+      }
+    </style>
   </head>
   <body>
     <main>
-      <p class="wordmark">quant <span>blitz_</span></p>
-      <h1>trading &amp; quant dev interview prep</h1>
-      <p>
-        Short lessons of multiple-choice questions: probability, brainteasers, betting and game
-        theory, market making and options for trading roles, and C++ and Python code reading for
-        quant developer roles. Plus mental math speed drills.
-      </p>
+      <section class="hero">
+        <img class="icon" src="img/quant-blitz.png" alt="" width="72" height="72" />
+        <h1>quant blitz</h1>
+        <p class="lede">Quant interview prep in <strong>a few minutes a day</strong>.</p>
+        <ul>
+          <li>1,424 questions on probability, brainteasers, market making, options and C++</li>
+          <li>Mental maths speed drills, against the clock</li>
+          <li>Every answer explained, with a review queue for what you miss</li>
+        </ul>
+        <a
+          class="download"
+          href="https://apps.apple.com/gb/app/quant-blitz-interview-prep/id6820223409"
+          >Download on the App Store</a
+        >
+        <a
+          class="download play"
+          href="https://play.google.com/store/apps/details?id=com.qdevblitz.app"
+          >Get it on Google Play</a
+        >
+        <p class="note">Free on iPhone and Android.</p>
+        <img
+          class="shot"
+          src="img/quant-blitz-path.jpg"
+          alt="The quant blitz app showing the Trading track's Market Making section"
+          width="640"
+          height="1390"
+          loading="lazy"
+        />
+      </section>
 
-      <h2>Support</h2>
-      <p>
-        Questions, problems or a question you think is wrong? Email
-        <a href="mailto:lukazsdev@gmail.com">lukazsdev@gmail.com</a>.
-      </p>
-      <ul>
-        <li>
-          <strong>Restore Premium on a new device:</strong> Profile → Restore purchases, signed in
-          to the same App Store or Google Play account you bought with.
-        </li>
-        <li>
-          <strong>Cancel a subscription:</strong> in your App Store or Google Play account settings,
-          under Subscriptions. Lifetime Premium is a one-time purchase, so there's nothing to
-          cancel.
-        </li>
-      </ul>
+      <section class="support">
+        <h2>Support</h2>
+        <p>
+          Questions, problems or a question you think is wrong? Email
+          <a href="mailto:lukazsdev@gmail.com">lukazsdev@gmail.com</a>.
+        </p>
+        <ul>
+          <li>
+            <strong>Restore Premium on a new device:</strong> Profile → Restore purchases, signed in
+            to the same App Store or Google Play account you bought with.
+          </li>
+          <li>
+            <strong>Cancel a subscription:</strong> in your App Store or Google Play account
+            settings, under Subscriptions. Lifetime Premium is a one-time purchase, so there's
+            nothing to cancel.
+          </li>
+        </ul>
+      </section>
 
-      <h2>Legal</h2>
-      <ul>
-        <li><a href="privacy/">Privacy policy</a></li>
-        <li><a href="terms/">Terms of use</a></li>
-      </ul>
+      <section class="legal">
+        <h2>Legal</h2>
+        <p><a href="privacy/">Privacy policy</a><a href="terms/">Terms of use</a></p>
+      </section>
     </main>
+    <footer>
+      <p>© 2026 Velori Labs Ltd · Registered in England and Wales · Company number 17529890</p>
+    </footer>
   </body>
 </html>

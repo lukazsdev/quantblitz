@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>15 C++ questions quant dev interviews actually ask</title>
+    <meta
+      name="description"
+      content="Fifteen real C++ interview questions for quant developer roles, with the answer and why: move semantics, RAII, shared_ptr, caches, branch prediction, allocation, atomics, lock-free queues."
+    />
+    <link rel="canonical" href="https://quantblitz.app/cpp-questions/" />
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="../favicon.png" type="image/png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="../apple-touch-icon.png" />
+    <meta name="theme-color" content="#0b0f14" />
+    <meta name="apple-itunes-app" content="app-id=6820223409" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="15 C++ questions quant dev interviews actually ask" />
+    <meta
+      property="og:description"
+      content="Not LeetCode. Move semantics, RAII, shared_ptr, caches, branch prediction, allocation, atomics and lock-free queues, each with the answer and why."
+    />
+    <meta property="og:url" content="https://quantblitz.app/cpp-questions/" />
+    <meta property="og:image" content="https://quantblitz.app/img/quant-blitz-path.jpg" />
+    <link
+      rel="preload"
+      href="../fonts/space-grotesk-700.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="stylesheet" href="../resource.css" />
+  </head>
+  <body>
+    <main>
+      <a class="qb" href="https://quantblitz.app/"
+        ><img src="../img/quant-blitz.png" alt="" width="28" height="28" />quant
+        <span>blitz_</span></a
+      >
+
+      <p class="eyebrow">Free resource</p>
+      <h1>15 C++ questions quant dev interviews actually ask</h1>
+      <p class="lede">
+        Quant developer interviews are not LeetCode. They test whether you know what the machine
+        does with your code. These are real questions from the quant blitz C++ track, with the
+        answer and the reason. C++20, GCC or Clang, x86-64.
+      </p>
+
+      <h2><span class="n">1</span>Move semantics</h2>
+      <div class="card">
+        <p class="q">
+          Why is moving a <code>std::array&lt;std::string, 1000&gt;</code> far more expensive than
+          moving a <code>std::vector&lt;std::string&gt;</code> of 1000 strings?
+        </p>
+        <details>
+          <summary>Answer</summary>
+          <p class="ans">
+            <code>std::array</code> stores its strings inline, so each must be moved.
+          </p>
+          <p>
+            <code>std::array</code> is a fixed-size aggregate with its elements inside the object,
+            so its move constructor moves every element, O(n). <code>std::vector</code> owns a heap
+            buffer, and its move just steals the pointer, O(1). Large arrays also make objects big,
+            which matters for anything that moves them around.
+          </p>
+        </details>
+      </div>
+
+      <h2><span class="n">2</span>RAII</h2>
+      <div class="card">
+        <p class="q">What happens by default if an exception escapes a destructor?</p>
+        <details>
+          <summary>Answer</summary>
+          <p class="ans">
+            <code>std::terminate</code> is called: destructors are <code>noexcept</code> by default.
+          </p>
+          <p>
+            Since C++11, destructors are implicitly <code>noexcept</code>, so an exception leaving
+            one calls <code>std::terminate</code> and the program aborts. Even with
+            <code>noexcept(false)</code>, throwing during stack unwinding from another exception
+            terminates. Destructors should swallow or log errors instead of throwing.
+          </p>
+        </details>
+      </div>
+
+      <h2><span class="n">3</span>Smart pointers</h2>
+      <div class="card">
+        <p class="q">
+          What advantage does <code>std::make_shared&lt;T&gt;(...)</code> have over
+          <code>std::shared_ptr&lt;T&gt;(new T(...))</code>?
+        </p>
+        <details>
+          <summary>Answer</summary>
+          <p class="ans">It allocates the object and its control block together, in one go.</p>
+          <p>
+            <code>std::shared_ptr</code> needs a control block for its reference counts.
+            <code>std::make_shared</code> allocates that block and the object together, saving an
+            allocation and keeping them adjacent in memory. One caveat: the combined block is only
+            freed when the last <code>weak_ptr</code> is gone too.
+          </p>
+        </details>
+      </div>
+      <div class="card">
+        <p class="q">
+          Two threads each hold their own <code>shared_ptr</code> copy pointing at the same object.
+          What is thread-safe?
+        </p>
+        <details>
+          <summary>Answer</summary>
+          <p class="ans">Copying and destroying their copies, but not the object itself.</p>
+          <p>
+            The control block's reference counts are updated atomically, so separate
+            <code>shared_ptr</code> instances can be copied and destroyed in different threads.
+            Concurrent reads of the pointed-to object are fine, but writes to it need
+            synchronization, and so does a single <code>shared_ptr</code> instance that one thread
+            modifies while another uses it (C++20 adds
+            <code>std::atomic&lt;std::shared_ptr&lt;T&gt;&gt;</code> for that).
+            <code>shared_ptr</code> makes ownership thread-safe, not the data.
+          </p>
+        </details>
+      </div>
+
+      <h2><span class="n">4</span>Special member functions</h2>
+      <div class="card">
+        <p class="q">
+          A base class declares <code>virtual ~Base() = default;</code> and nothing else. What
+          happens to its move operations?
+        </p>
+        <details>
+          <summary>Answer</summary>
+          <p class="ans">
+            They aren't declared, so moving a <code>Base</code> silently copies instead.
+          </p>
+          <p>
+            Any user-declared destructor, even <code>= default</code>, suppresses the implicit move
+            constructor and move assignment. Copies still work, so rvalues fall back to copying with
+            no error. Polymorphic bases that should be movable must declare all five:
+            <code>Base(Base&amp;&amp;) = default;</code> and friends.
+          </p>
+        </details>
+      </div>
+
+      <h2><span class="n">5</span>Caches</h2>
+      <div class="card">
+        <p class="q">
+          Roughly how much slower is a load from main memory than a load that hits the L1 cache?
+        </p>
+        <details>
+          <summary>Answer</summary>
+          <p class="ans">About 100 times (roughly 100 ns vs 1 ns).</p>
+          <p>
+            An L1 hit takes 4 or 5 cycles, 1 to 2 ns. On current x86-64 servers, L2 hits cost about
+            4 to 5 ns, L3 hits roughly 15 to 35 ns and DRAM accesses 100 to 130 ns. That gap is why
+            cache misses, not arithmetic, dominate so much real-world performance.
+          </p>
+        </details>
+      </div>
+      <div class="card">
+        <p class="q">
+          Why are open-addressing ("flat") hash tables often faster than
+          <code>std::unordered_map</code>?
+        </p>
+        <details>
+          <summary>Answer</summary>
+          <p class="ans">Entries sit inline in one array, so lookups avoid pointer chasing.</p>
+          <p>
+            The standard requires <code>unordered_map</code> to keep element addresses stable, which
+            practically forces a separately allocated node per element plus a bucket array of
+            pointers. Flat tables, like <code>absl::flat_hash_map</code> or
+            <code>boost::unordered_flat_map</code>, probe a contiguous array instead. Fewer
+            allocations and cache misses usually make them several times faster.
+          </p>
+        </details>
+      </div>
+      <div class="card">
+        <p class="q">
+          A loop follows a random chain of pointers through an array. Why does each step get
+          dramatically slower as the array grows from kilobytes to gigabytes?
+        </p>
+        <details>
+          <summary>Answer</summary>
+          <p class="ans">Every dependent load now misses the caches and waits on DRAM.</p>
+          <p>
+            While the chain fits in L1 or L2, each hop takes 1 to 5 ns, L3 hits take roughly 15 to
+            35 ns, and beyond the last-level cache every hop waits 100 ns or more for DRAM. Because
+            each address depends on the previous load, the CPU can't run hops in parallel to hide
+            the latency. That's why graph and tree traversals over large data are so latency-bound.
+          </p>
+        </details>
+      </div>
+
+      <h2><span class="n">6</span>Branch prediction</h2>
+      <div class="card">
+        <p class="q">Roughly what does a branch misprediction cost on a modern x86-64 core?</p>
+        <details>
+          <summary>Answer</summary>
+          <p class="ans">About 15 to 20 cycles of wasted pipeline work.</p>
+          <p>
+            On a misprediction, the CPU discards the instructions it executed speculatively and
+            restarts from the correct target, which wastes roughly the length of the pipeline. At
+            billions of cycles per second that's only a few nanoseconds, but in a hot loop with
+            unpredictable branches it can dominate. That's why sorted data or branchless code can be
+            many times faster.
+          </p>
+        </details>
+      </div>
+      <div class="card">
+        <p class="q">
+          Why can a virtual call inside a hot loop over objects of many different types be slow?
+        </p>
+        <details>
+          <summary>Answer</summary>
+          <p class="ans">Its target changes unpredictably, so the indirect call mispredicts.</p>
+          <p>
+            An indirect branch's target is predicted from history like any other branch, so a call
+            site that always hits the same type is cheap. When object types alternate randomly, the
+            predicted target is often wrong. Sorting objects by type, or keeping one container per
+            type, makes the targets predictable.
+          </p>
+        </details>
+      </div>
+
+      <h2><span class="n">7</span>Allocation</h2>
+      <div class="card">
+        <p class="q">
+          Why can a single <code>new</code> occasionally take microseconds instead of nanoseconds?
+        </p>
+        <details>
+          <summary>Answer</summary>
+          <p class="ans">The allocator sometimes asks the OS for memory, then page-faults it in.</p>
+          <p>
+            Most allocations are served from free lists in user space and take tens of nanoseconds.
+            Occasionally the allocator has to request memory from the kernel, which involves a
+            system call, and touching those fresh pages costs a fault per page. These rare events
+            create the latency spikes that hot paths must avoid.
+          </p>
+        </details>
+      </div>
+
+      <h2><span class="n">8</span>Atomics and memory ordering</h2>
+      <div class="card">
+        <p class="q">
+          What does a release store paired with an acquire load that reads its value guarantee?
+        </p>
+        <details>
+          <summary>Answer</summary>
+          <p class="ans">All writes made before the release are visible after the acquire.</p>
+          <p>
+            Release/acquire creates a happens-before edge between exactly those two threads:
+            everything before the release store is visible after the acquire load that observes it.
+            It doesn't impose a global order on unrelated atomics; that's what <code>seq_cst</code>
+            adds. Mutex unlock and lock use the same release/acquire semantics.
+          </p>
+        </details>
+      </div>
+
+      <h2><span class="n">9</span>Lock-free queues</h2>
+      <div class="card">
+        <p class="q">
+          Why do fast SPSC queues put <code>head</code> and <code>tail</code> on separate cache
+          lines?
+        </p>
+        <details>
+          <summary>Answer</summary>
+          <p class="ans">Otherwise each index update invalidates the other core's copy.</p>
+          <p>
+            Cache coherence works on whole cache lines, so two variables written by different cores
+            on the same line keep stealing the line from each other. Aligning each index with
+            <code>alignas(64)</code> (or <code>std::hardware_destructive_interference_size</code>)
+            removes that contention. Implementations often also cache the other side's index locally
+            to touch the shared line less often.
+          </p>
+        </details>
+      </div>
+      <div class="card">
+        <p class="q">
+          Why can't a lock-free <code>pop</code> simply <code>delete</code> the node it removed?
+        </p>
+        <details>
+          <summary>Answer</summary>
+          <p class="ans">Another thread may have read the same pointer and still be using it.</p>
+          <p>
+            Between loading <code>top</code> and attempting its CAS, a thread dereferences the node
+            to read <code>next</code>, and another thread may pop and free that node in the
+            meantime. Freeing immediately turns that read into a use after free. Safe reclamation
+            schemes, such as hazard pointers, epochs, reference counting or RCU, delay the free
+            until no thread can still hold the pointer.
+          </p>
+        </details>
+      </div>
+
+      <h2><span class="n">10</span>Mutexes</h2>
+      <div class="card">
+        <p class="q">Why is calling a user-supplied callback while holding a mutex risky?</p>
+        <details>
+          <summary>Answer</summary>
+          <p class="ans">It may take the same mutex, or others in a conflicting order: deadlock.</p>
+          <p>
+            Code you don't control can do anything, including calling back into your class and
+            relocking the same mutex, or acquiring locks in an order that conflicts with yours. It
+            also holds your lock for as long as the callback takes. Copy what you need under the
+            lock, unlock, and then call the callback.
+          </p>
+        </details>
+      </div>
+
+      <h2><span class="n">11</span>Two more to check yourself</h2>
+      <div class="card">
+        <p class="q">In C++20, what is <code>-8 &gt;&gt; 1</code>?</p>
+        <details>
+          <summary>Answer</summary>
+          <p class="ans">
+            <code>-4</code>: since C++20, <code>&gt;&gt;</code> on a negative value is an arithmetic
+            shift.
+          </p>
+          <p>
+            C++20 requires two's complement and defines <code>&gt;&gt;</code> on negative values as
+            an arithmetic shift, so <code>-8 &gt;&gt; 1</code> is <code>-4</code> (it rounds toward
+            negative infinity). Before C++20 it was implementation-defined, and left-shifting a
+            negative value was undefined. Shifting by the type's width or more is still undefined.
+          </p>
+        </details>
+      </div>
+      <div class="card">
+        <p class="q">
+          <code>sq</code> is a <code>constexpr</code> function. Inside <code>main</code>, is
+          <code>int r = sq(5);</code> guaranteed to be computed at compile time?
+        </p>
+        <details>
+          <summary>Answer</summary>
+          <p class="ans">No: a local <code>int</code> initializer doesn't need a constant.</p>
+          <p>
+            <code>constexpr</code> means a function can be evaluated at compile time; a local
+            <code>int</code> initializer doesn't need a constant, so the call may happen at run
+            time. Clang at <code>-O0</code> emits a real call here, while at <code>-O2</code> it
+            folds the result to 25. Write <code>constexpr int r = sq(5);</code>, or make
+            <code>sq</code> <code>consteval</code>, when compile-time evaluation must be guaranteed.
+          </p>
+        </details>
+      </div>
+
+      <section class="cta">
+        <h2>560 more like these, in your pocket</h2>
+        <p>
+          The quant blitz C++ track has 35 units from value categories to lock-free code, with short
+          daily lessons, speed rounds and a review queue for what you miss. Free to start.
+        </p>
+        <div class="stores">
+          <a
+            class="store"
+            href="https://apps.apple.com/gb/app/quant-blitz-interview-prep/id6820223409"
+            >App Store</a
+          >
+          <a
+            class="store play"
+            href="https://play.google.com/store/apps/details?id=com.qdevblitz.app"
+            >Google Play</a
+          >
+        </div>
+      </section>
+    </main>
+    <footer>
+      <p><a href="https://quantblitz.app/">quantblitz.app</a></p>
+      <p>© 2026 Velori Labs Ltd</p>
+    </footer>
+  </body>
+</html>
