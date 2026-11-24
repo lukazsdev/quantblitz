@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>A free week of quant blitz Premium</title>
+    <meta
+      name="description"
+      content="A friend sent you a free week of quant blitz Premium: quant interview prep for traders and quant devs."
+    />
+    <meta name="robots" content="noindex" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon.png" type="image/png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="theme-color" content="#0a1a3f" />
+    <meta name="apple-itunes-app" content="app-id=6820223409" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="quant blitz" />
+    <meta property="og:title" content="A friend sent you a free week of quant blitz Premium" />
+    <meta
+      property="og:description"
+      content="Quant interview prep: probability, brainteasers, market making, mental maths and C++. Enter the code in the app and you both get a week of Premium."
+    />
+    <meta property="og:image" content="https://quantblitz.app/img/quant-blitz-path.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preload" href="/fonts/syne-800.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/dm-sans-400.woff2" as="font" type="font/woff2" crossorigin />
+    <style>
+      @font-face {
+        font-family: 'Syne';
+        src: url('/fonts/syne-800.woff2') format('woff2');
+        font-weight: 800;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: 'DM Sans';
+        src: url('/fonts/dm-sans-400.woff2') format('woff2');
+        font-weight: 400;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: 'DM Sans';
+        src: url('/fonts/dm-sans-500.woff2') format('woff2');
+        font-weight: 500;
+        font-display: swap;
+      }
+      :root {
+        color-scheme: dark;
+        --abyss: #050e26;
+        --navy: #0a1a3f;
+        --surface: rgba(16, 36, 82, 0.5);
+        --line: rgba(141, 162, 196, 0.16);
+        --line-strong: rgba(141, 162, 196, 0.3);
+        --text: #f4f7fb;
+        --body: #c6d1e6;
+        --muted: #8da2c4;
+        --green: #1ed696;
+        --on-green: #03140d;
+        --gold: #ffc53d;
+        --on-gold: #2a1d00;
+        --mono: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, monospace;
+        --display: 'Syne', 'DM Sans', system-ui, sans-serif;
+        --sans: 'DM Sans', system-ui, -apple-system, sans-serif;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background:
+          radial-gradient(60rem 30rem at 50% -10rem, rgba(255, 197, 61, 0.12), transparent 70%),
+          linear-gradient(180deg, var(--navy), var(--abyss));
+        color: var(--body);
+        font: 400 17px/1.55 var(--sans);
+        -webkit-font-smoothing: antialiased;
+      }
+      main {
+        max-width: 30rem;
+        margin: 0 auto;
+        padding: max(2.5rem, env(safe-area-inset-top)) max(1.25rem, env(safe-area-inset-right))
+          max(3rem, env(safe-area-inset-bottom)) max(1.25rem, env(safe-area-inset-left));
+        display: flex;
+        flex-direction: column;
+        gap: 1.75rem;
+        text-align: center;
+      }
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        justify-content: center;
+        color: var(--text);
+        font: 500 1.05rem var(--mono);
+        text-decoration: none;
+      }
+      .brand img {
+        width: 2.25rem;
+        height: 2.25rem;
+        border-radius: 0.6rem;
+      }
+      .gift {
+        width: 5rem;
+        height: 5rem;
+        margin: 0 auto;
+        border-radius: 1.4rem;
+        background: var(--gold);
+        border-bottom: 5px solid #c98f00;
+        display: grid;
+        place-items: center;
+        box-shadow: 0 0 3rem rgba(255, 197, 61, 0.35);
+      }
+      h1 {
+        margin: 0;
+        color: var(--text);
+        font: 800 clamp(1.9rem, 7vw, 2.4rem) / 1.1 var(--display);
+        letter-spacing: -0.02em;
+        text-wrap: balance;
+      }
+      p {
+        margin: 0;
+      }
+      .code {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 1rem 1.25rem;
+        border: 1px solid var(--line-strong);
+        border-radius: 1rem;
+        background: var(--surface);
+      }
+      .code span {
+        color: var(--text);
+        font: 700 1.7rem var(--mono);
+        letter-spacing: 0.18em;
+      }
+      button,
+      .button {
+        appearance: none;
+        border: 0;
+        cursor: pointer;
+        border-radius: 0.8rem;
+        font: 500 1rem var(--sans);
+        text-decoration: none;
+      }
+      .copy {
+        padding: 0.55rem 0.9rem;
+        background: rgba(141, 162, 196, 0.14);
+        color: var(--text);
+      }
+      .open {
+        display: block;
+        padding: 0.95rem;
+        background: var(--green);
+        color: var(--on-green);
+      }
+      .stores {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+      }
+      .stores img {
+        height: 3rem;
+        width: auto;
+        display: block;
+      }
+      ol {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: grid;
+        gap: 0.9rem;
+        text-align: left;
+      }
+      li {
+        display: flex;
+        gap: 0.85rem;
+        align-items: baseline;
+      }
+      li b {
+        color: var(--green);
+        font: 700 0.85rem var(--mono);
+      }
+      li span {
+        color: var(--body);
+      }
+      li strong {
+        color: var(--text);
+        font-weight: 500;
+      }
+      .small {
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+      [hidden] {
+        display: none !important;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <a class="brand" href="/"><img src="/img/quant-blitz.png" alt="" /> quant blitz_</a>
+      <div class="gift" aria-hidden="true">
+        <svg
+          width="44"
+          height="44"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="#2a1d00"
+          stroke-width="2"
+        >
+          <rect x="3.5" y="9" width="17" height="12" rx="2" />
+          <path d="M2.5 7.5h19v3h-19zM12 7.5V21" fill="#2a1d00" />
+          <path
+            d="M12 7.5C10 3.5 6.5 4 7 6.5c.3 1 2.5 1 5 1zm0 0c2-4 5.5-3.5 5-1-.3 1-2.5 1-5 1z"
+          />
+        </svg>
+      </div>
+      <h1>A friend sent you a free week of Premium</h1>
+      <p>
+        quant blitz is quant interview prep on your phone: probability, brainteasers, market making,
+        mental maths and C++. Enter your friend's code in the app and you both get 7 days of
+        Premium.
+      </p>
+
+      <div class="code" id="code-box" hidden>
+        <span id="code"></span>
+        <button class="copy" id="copy" type="button">Copy</button>
+      </div>
+
+      <a class="button open" id="open" href="qdevblitz://" hidden>I have the app: open it</a>
+
+      <div class="stores">
+        <a href="https://apps.apple.com/gb/app/quant-blitz-interview-prep/id6820223409"
+          ><img src="/img/badge-app-store.svg" alt="Download on the App Store"
+        /></a>
+        <a href="https://play.google.com/store/apps/details?id=com.qdevblitz.app"
+          ><img src="/img/badge-google-play.png" alt="Get it on Google Play"
+        /></a>
+      </div>
+
+      <ol>
+        <li>
+          <b>01</b><span><strong>Get quant blitz</strong> and finish the quick setup.</span>
+        </li>
+        <li>
+          <b>02</b
+          ><span
+            ><strong>Tap the gift</strong> at the top of the Path, then "Got a code from a friend?
+            Enter it".</span
+          >
+        </li>
+        <li>
+          <b>03</b
+          ><span
+            ><strong>Finish a lesson.</strong> Your free week starts, and your friend gets one
+            too.</span
+          >
+        </li>
+      </ol>
+      <p class="small">Codes are for new players, in their first 14 days. Nothing to pay.</p>
+    </main>
+    <script>
+      (function () {
+        // quantblitz.app/i/QB-XXXXX (Netlify serves this page for it), or ?c=QB-XXXXX.
+        var segment = (location.pathname.split('/i/')[1] || '').split('/')[0];
+        if (/^index/.test(segment)) segment = '';
+        var raw = new URLSearchParams(location.search).get('c') || segment;
+        var letters = raw.toUpperCase().replace(/[^A-Z0-9]/g, '');
+        if (letters.indexOf('QB') === 0 && letters.length === 7) letters = letters.slice(2);
+        if (!/^[2-9A-HJ-NP-Z]{5}$/.test(letters)) return;
+        var code = 'QB-' + letters;
+        document.getElementById('code').textContent = code;
+        document.getElementById('code-box').hidden = false;
+        var open = document.getElementById('open');
+        open.href = 'qdevblitz://i/' + code;
+        open.hidden = false;
+        var copy = document.getElementById('copy');
+        copy.addEventListener('click', function () {
+          var done = function () {
+            copy.textContent = 'Copied';
+          };
+          if (navigator.clipboard) navigator.clipboard.writeText(code).then(done, function () {});
+        });
+      })();
+    </script>
+  </body>
+</html>
