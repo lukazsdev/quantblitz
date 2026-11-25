@@ -982,18 +982,21 @@
               class="plan"
               data-reveal
               style="--d: 0.36s"
-              href="https://apps.apple.com/redeem?ctx=offercodes&amp;id=6820223409&amp;code=BFMONTH"
+              href="https://apps.apple.com/redeem?ctx=offercodes&amp;id=6820223409&amp;code=BF30MONTH"
             >
               <div class="plan-row">
                 <span class="name">Monthly</span>
                 <span class="price"
-                  ><s class="was">£19.99</s><span class="now">£13.99</span
-                  ><span class="per">/mo</span></span
+                  ><s class="was" data-price="m0">£19.99</s
+                  ><span class="now" data-price="m1">£13.99</span><span class="per">/mo</span></span
                 >
               </div>
-              <p class="note">For your first 3 months. Then £19.99 a month unless you cancel.</p>
+              <p class="note">
+                For your first 3 months. Then <span data-price="m0">£19.99</span> a month unless you
+                cancel.
+              </p>
               <div class="plan-foot">
-                <span>code <b>BFMONTH</b></span>
+                <span>code <b>BF30MONTH</b></span>
                 <span class="go"
                   >Redeem
                   <svg
@@ -1015,21 +1018,21 @@
               class="plan featured"
               data-reveal
               style="--d: 0.44s"
-              href="https://apps.apple.com/redeem?ctx=offercodes&amp;id=6820223409&amp;code=BFYEAR"
+              href="https://apps.apple.com/redeem?ctx=offercodes&amp;id=6820223409&amp;code=BF30YEAR"
             >
               <div class="plan-row">
                 <span class="name">Yearly</span>
                 <span class="price"
-                  ><s class="was">£79.99</s><span class="now">£55.99</span
-                  ><span class="per">/yr</span></span
+                  ><s class="was" data-price="y0">£79.99</s
+                  ><span class="now" data-price="y1">£55.99</span><span class="per">/yr</span></span
                 >
               </div>
               <p class="note">
-                For the first year, which works out at £4.67 a month. Renews at £79.99 unless you
-                cancel.
+                For the first year, which works out at <span data-price="ypm">£4.67</span> a month.
+                Renews at <span data-price="y0">£79.99</span> unless you cancel.
               </p>
               <div class="plan-foot">
-                <span>code <b>BFYEAR</b></span>
+                <span>code <b>BF30YEAR</b></span>
                 <span class="go"
                   >Redeem
                   <svg
@@ -1051,18 +1054,19 @@
               class="plan"
               data-reveal
               style="--d: 0.52s"
-              href="https://apps.apple.com/redeem?ctx=offercodes&amp;id=6820223409&amp;code=BFLIFE"
+              href="https://apps.apple.com/redeem?ctx=offercodes&amp;id=6820223409&amp;code=BF30LIFE"
             >
               <div class="plan-row">
                 <span class="name">Lifetime</span>
                 <span class="price"
-                  ><s class="was">£199.99</s><span class="now">£139.99</span
+                  ><s class="was" data-price="l0">£199.99</s
+                  ><span class="now" data-price="l1">£139.99</span
                   ><span class="per">once</span></span
                 >
               </div>
               <p class="note">Premium for good. Nothing renews.</p>
               <div class="plan-foot">
-                <span>code <b>BFLIFE</b></span>
+                <span>code <b>BF30LIFE</b></span>
                 <span class="go"
                   >Redeem
                   <svg
@@ -1081,6 +1085,7 @@
               </div>
             </a>
           </div>
+          <p class="hint" id="price-region" hidden></p>
           <p class="hint" data-reveal>
             On iPhone, each plan opens the App Store with the discount already applied. You can also
             type the code in the App Store: tap your profile picture, then Redeem Gift Card or Code.
@@ -1311,6 +1316,342 @@
       <span><b>30% off</b> until 30 Nov</span>
       <a class="btn" href="#plans">Pick a plan</a>
     </div>
+
+    <script id="bf-prices" type="application/json">
+      {
+        "prices": {
+          "GB": { "c": "GBP", "m": [19.99, 13.99], "y": [79.99, 55.99], "l": [199.99, 139.99] },
+          "IE": { "c": "EUR", "m": [22.99, 14.99], "y": [89.99, 59.99], "l": [229.99, 149.99] },
+          "US": { "c": "USD", "m": [19.99, 13.99], "y": [79.99, 55.99], "l": [199.99, 139.99] },
+          "CA": { "c": "CAD", "m": [24.99, 14.99], "y": [99.99, 69.99], "l": [249.99, 149.99] },
+          "AU": { "c": "AUD", "m": [29.99, 19.99], "y": [129.99, 89.99], "l": [299.99, 199.99] },
+          "NZ": { "c": "NZD", "m": [39.99, 24.99], "y": [149.99, 99.99], "l": [399.99, 249.99] },
+          "SG": { "c": "SGD", "m": [29.98, 19.98], "y": [99.98, 69.98], "l": [299.98, 199.98] },
+          "HK": { "c": "HKD", "m": [148, 98], "y": [588, 388], "l": [1488, 988] },
+          "IN": { "c": "INR", "m": [1999, 1299], "y": [7900, 4999], "l": [19900, 12900] },
+          "CH": { "c": "CHF", "m": [18, 12], "y": [70, 40], "l": [180, 120] },
+          "FR": { "c": "EUR", "m": [22.99, 14.99], "y": [89.99, 59.99], "l": [229.99, 149.99] },
+          "DE": { "c": "EUR", "m": [22.99, 14.99], "y": [89.99, 59.99], "l": [229.99, 149.99] },
+          "NL": { "c": "EUR", "m": [22.99, 14.99], "y": [89.99, 59.99], "l": [229.99, 149.99] },
+          "ES": { "c": "EUR", "m": [22.99, 14.99], "y": [89.99, 59.99], "l": [229.99, 149.99] },
+          "IT": { "c": "EUR", "m": [22.99, 14.99], "y": [89.99, 59.99], "l": [229.99, 149.99] },
+          "BE": { "c": "EUR", "m": [22.99, 14.99], "y": [89.99, 59.99], "l": [229.99, 149.99] },
+          "AT": { "c": "EUR", "m": [22.99, 14.99], "y": [89.99, 59.99], "l": [229.99, 149.99] },
+          "PT": { "c": "EUR", "m": [22.99, 14.99], "y": [89.99, 59.99], "l": [229.99, 149.99] },
+          "FI": { "c": "EUR", "m": [22.99, 14.99], "y": [89.99, 59.99], "l": [229.99, 149.99] },
+          "GR": { "c": "EUR", "m": [22.99, 14.99], "y": [89.99, 59.99], "l": [229.99, 149.99] },
+          "LU": { "c": "EUR", "m": [22.99, 14.99], "y": [89.99, 59.99], "l": [229.99, 149.99] },
+          "EE": { "c": "EUR", "m": [22.99, 14.99], "y": [89.99, 59.99], "l": [229.99, 149.99] },
+          "LV": { "c": "EUR", "m": [22.99, 14.99], "y": [89.99, 59.99], "l": [229.99, 149.99] },
+          "LT": { "c": "EUR", "m": [22.99, 14.99], "y": [89.99, 59.99], "l": [229.99, 149.99] },
+          "SK": { "c": "EUR", "m": [22.99, 14.99], "y": [89.99, 59.99], "l": [229.99, 149.99] },
+          "SI": { "c": "EUR", "m": [22.99, 14.99], "y": [89.99, 59.99], "l": [229.99, 149.99] },
+          "HR": { "c": "EUR", "m": [22.99, 14.99], "y": [89.99, 59.99], "l": [229.99, 149.99] },
+          "CY": { "c": "EUR", "m": [22.99, 14.99], "y": [89.99, 59.99], "l": [229.99, 149.99] },
+          "MT": { "c": "EUR", "m": [22.99, 14.99], "y": [89.99, 59.99], "l": [229.99, 149.99] },
+          "BG": { "c": "EUR", "m": [22.99, 14.99], "y": [89.99, 59.99], "l": [229.99, 149.99] },
+          "SE": { "c": "SEK", "m": [249, 149], "y": [999, 699], "l": [2495, 1495] },
+          "DK": { "c": "DKK", "m": [179, 119], "y": [699, 399], "l": [1799, 1199] },
+          "NO": { "c": "NOK", "m": [249, 149], "y": [999, 699], "l": [2490, 1490] },
+          "PL": { "c": "PLN", "m": [99.99, 59.99], "y": [399.99, 249.99], "l": [999.99, 599.99] },
+          "CZ": { "c": "CZK", "m": [499, 349], "y": [1990, 1290], "l": [4990, 3490] },
+          "HU": { "c": "HUF", "m": [8990, 5990], "y": [34990, 22990], "l": [89990, 59990] },
+          "RO": { "c": "RON", "m": [99.99, 69.99], "y": [399.99, 249.99], "l": [999.99, 699.99] },
+          "UA": { "c": "USD", "m": [22.99, 14.99], "y": [99.99, 69.99], "l": [229.99, 149.99] },
+          "TR": {
+            "c": "TRY",
+            "m": [999.99, 699.99],
+            "y": [3999.99, 2499.99],
+            "l": [9999.99, 6999.99]
+          },
+          "IL": { "c": "ILS", "m": [59.9, 39.9], "y": [249.9, 149.9], "l": [599.9, 399.9] },
+          "AE": { "c": "AED", "m": [79.99, 49.99], "y": [299.99, 199.99], "l": [799.99, 499.99] },
+          "SA": { "c": "SAR", "m": [89.99, 59.99], "y": [349.99, 229.99], "l": [899.99, 599.99] },
+          "QA": { "c": "QAR", "m": [69.99, 39.99], "y": [299.99, 199.99], "l": [699.99, 399.99] },
+          "KW": { "c": "USD", "m": [19.99, 13.99], "y": [79.99, 55.99], "l": [199.99, 139.99] },
+          "EG": {
+            "c": "EGP",
+            "m": [999.99, 699.99],
+            "y": [3999.99, 2499.99],
+            "l": [9999.99, 6999.99]
+          },
+          "ZA": {
+            "c": "ZAR",
+            "m": [399.99, 249.99],
+            "y": [1499.99, 999.99],
+            "l": [3999.99, 2499.99]
+          },
+          "NG": { "c": "NGN", "m": [29900, 19900], "y": [129900, 89900], "l": [299900, 199900] },
+          "KE": { "c": "USD", "m": [22.99, 14.99], "y": [99.99, 69.99], "l": [229.99, 149.99] },
+          "PK": { "c": "PKR", "m": [4900, 2900], "y": [19900, 12900], "l": [49900, 34900] },
+          "JP": { "c": "JPY", "m": [3000, 2000], "y": [13000, 9000], "l": [30000, 20000] },
+          "KR": { "c": "KRW", "m": [33000, 22000], "y": [129000, 88000], "l": [349000, 229000] },
+          "TW": { "c": "TWD", "m": [690, 390], "y": [2490, 1490], "l": [6990, 4490] },
+          "VN": {
+            "c": "VND",
+            "m": [599000, 399000],
+            "y": [2499000, 1499000],
+            "l": [5999000, 3999000]
+          },
+          "TH": { "c": "THB", "m": [699, 399], "y": [2990, 1990], "l": [6990, 3990] },
+          "MY": { "c": "MYR", "m": [99.9, 59.9], "y": [399.9, 249.9], "l": [999.9, 599.9] },
+          "ID": {
+            "c": "IDR",
+            "m": [399000, 249000],
+            "y": [1499000, 999000],
+            "l": [3999000, 2499000]
+          },
+          "PH": { "c": "PHP", "m": [1290, 899], "y": [4990, 3490], "l": [12990, 8990] },
+          "BR": { "c": "BRL", "m": [129.9, 79.9], "y": [499.9, 349.9], "l": [1299.9, 899.9] },
+          "MX": { "c": "MXN", "m": [399, 249], "y": [1799, 1199], "l": [3999, 2499] },
+          "AR": { "c": "USD", "m": [19.99, 13.99], "y": [79.99, 55.99], "l": [199.99, 139.99] },
+          "CL": { "c": "CLP", "m": [22990, 14990], "y": [99990, 59990], "l": [229990, 149990] },
+          "CO": { "c": "COP", "m": [99900, 59900], "y": [399900, 249900], "l": [999900, 599900] },
+          "PE": { "c": "PEN", "m": [89.9, 59.9], "y": [349.9, 229.9], "l": [899.9, 599.9] }
+        },
+        "zones": {
+          "Asia/Dubai": "AE",
+          "America/Argentina/Buenos_Aires": "AR",
+          "America/Argentina/Cordoba": "AR",
+          "America/Argentina/Salta": "AR",
+          "America/Argentina/Jujuy": "AR",
+          "America/Argentina/Tucuman": "AR",
+          "America/Argentina/Catamarca": "AR",
+          "America/Argentina/La_Rioja": "AR",
+          "America/Argentina/San_Juan": "AR",
+          "America/Argentina/Mendoza": "AR",
+          "America/Argentina/San_Luis": "AR",
+          "America/Argentina/Rio_Gallegos": "AR",
+          "America/Argentina/Ushuaia": "AR",
+          "Europe/Vienna": "AT",
+          "Australia/Lord_Howe": "AU",
+          "Antarctica/Macquarie": "AU",
+          "Australia/Hobart": "AU",
+          "Australia/Melbourne": "AU",
+          "Australia/Sydney": "AU",
+          "Australia/Broken_Hill": "AU",
+          "Australia/Brisbane": "AU",
+          "Australia/Lindeman": "AU",
+          "Australia/Adelaide": "AU",
+          "Australia/Darwin": "AU",
+          "Australia/Perth": "AU",
+          "Australia/Eucla": "AU",
+          "Europe/Brussels": "BE",
+          "Europe/Sofia": "BG",
+          "America/Noronha": "BR",
+          "America/Belem": "BR",
+          "America/Fortaleza": "BR",
+          "America/Recife": "BR",
+          "America/Araguaina": "BR",
+          "America/Maceio": "BR",
+          "America/Bahia": "BR",
+          "America/Sao_Paulo": "BR",
+          "America/Campo_Grande": "BR",
+          "America/Cuiaba": "BR",
+          "America/Santarem": "BR",
+          "America/Porto_Velho": "BR",
+          "America/Boa_Vista": "BR",
+          "America/Manaus": "BR",
+          "America/Eirunepe": "BR",
+          "America/Rio_Branco": "BR",
+          "America/St_Johns": "CA",
+          "America/Halifax": "CA",
+          "America/Glace_Bay": "CA",
+          "America/Moncton": "CA",
+          "America/Goose_Bay": "CA",
+          "America/Blanc-Sablon": "CA",
+          "America/Toronto": "CA",
+          "America/Iqaluit": "CA",
+          "America/Atikokan": "CA",
+          "America/Winnipeg": "CA",
+          "America/Resolute": "CA",
+          "America/Rankin_Inlet": "CA",
+          "America/Regina": "CA",
+          "America/Swift_Current": "CA",
+          "America/Edmonton": "CA",
+          "America/Cambridge_Bay": "CA",
+          "America/Inuvik": "CA",
+          "America/Vancouver": "CA",
+          "America/Creston": "CA",
+          "America/Dawson_Creek": "CA",
+          "America/Fort_Nelson": "CA",
+          "America/Whitehorse": "CA",
+          "America/Dawson": "CA",
+          "Europe/Zurich": "CH",
+          "America/Santiago": "CL",
+          "America/Coyhaique": "CL",
+          "America/Punta_Arenas": "CL",
+          "Pacific/Easter": "CL",
+          "America/Bogota": "CO",
+          "Asia/Nicosia": "CY",
+          "Asia/Famagusta": "CY",
+          "Europe/Prague": "CZ",
+          "Europe/Berlin": "DE",
+          "Europe/Busingen": "DE",
+          "Europe/Copenhagen": "DK",
+          "Europe/Tallinn": "EE",
+          "Africa/Cairo": "EG",
+          "Europe/Madrid": "ES",
+          "Africa/Ceuta": "ES",
+          "Atlantic/Canary": "ES",
+          "Europe/Helsinki": "FI",
+          "Europe/Paris": "FR",
+          "Europe/London": "GB",
+          "Europe/Athens": "GR",
+          "Asia/Hong_Kong": "HK",
+          "Europe/Zagreb": "HR",
+          "Europe/Budapest": "HU",
+          "Asia/Jakarta": "ID",
+          "Asia/Pontianak": "ID",
+          "Asia/Makassar": "ID",
+          "Asia/Jayapura": "ID",
+          "Europe/Dublin": "IE",
+          "Asia/Jerusalem": "IL",
+          "Asia/Kolkata": "IN",
+          "Europe/Rome": "IT",
+          "Asia/Tokyo": "JP",
+          "Africa/Nairobi": "KE",
+          "Asia/Seoul": "KR",
+          "Asia/Kuwait": "KW",
+          "Europe/Vilnius": "LT",
+          "Europe/Luxembourg": "LU",
+          "Europe/Riga": "LV",
+          "Europe/Malta": "MT",
+          "America/Mexico_City": "MX",
+          "America/Cancun": "MX",
+          "America/Merida": "MX",
+          "America/Monterrey": "MX",
+          "America/Matamoros": "MX",
+          "America/Chihuahua": "MX",
+          "America/Ciudad_Juarez": "MX",
+          "America/Ojinaga": "MX",
+          "America/Mazatlan": "MX",
+          "America/Bahia_Banderas": "MX",
+          "America/Hermosillo": "MX",
+          "America/Tijuana": "MX",
+          "Asia/Kuala_Lumpur": "MY",
+          "Asia/Kuching": "MY",
+          "Africa/Lagos": "NG",
+          "Europe/Amsterdam": "NL",
+          "Europe/Oslo": "NO",
+          "Pacific/Auckland": "NZ",
+          "Pacific/Chatham": "NZ",
+          "America/Lima": "PE",
+          "Asia/Manila": "PH",
+          "Asia/Karachi": "PK",
+          "Europe/Warsaw": "PL",
+          "Europe/Lisbon": "PT",
+          "Atlantic/Madeira": "PT",
+          "Atlantic/Azores": "PT",
+          "Asia/Qatar": "QA",
+          "Europe/Bucharest": "RO",
+          "Europe/Simferopol": "UA",
+          "Asia/Riyadh": "SA",
+          "Europe/Stockholm": "SE",
+          "Asia/Singapore": "SG",
+          "Europe/Ljubljana": "SI",
+          "Europe/Bratislava": "SK",
+          "Asia/Bangkok": "TH",
+          "Europe/Istanbul": "TR",
+          "Asia/Taipei": "TW",
+          "Europe/Kyiv": "UA",
+          "America/New_York": "US",
+          "America/Detroit": "US",
+          "America/Kentucky/Louisville": "US",
+          "America/Kentucky/Monticello": "US",
+          "America/Indiana/Indianapolis": "US",
+          "America/Indiana/Vincennes": "US",
+          "America/Indiana/Winamac": "US",
+          "America/Indiana/Marengo": "US",
+          "America/Indiana/Petersburg": "US",
+          "America/Indiana/Vevay": "US",
+          "America/Chicago": "US",
+          "America/Indiana/Tell_City": "US",
+          "America/Indiana/Knox": "US",
+          "America/Menominee": "US",
+          "America/North_Dakota/Center": "US",
+          "America/North_Dakota/New_Salem": "US",
+          "America/North_Dakota/Beulah": "US",
+          "America/Denver": "US",
+          "America/Boise": "US",
+          "America/Phoenix": "US",
+          "America/Los_Angeles": "US",
+          "America/Anchorage": "US",
+          "America/Juneau": "US",
+          "America/Sitka": "US",
+          "America/Metlakatla": "US",
+          "America/Yakutat": "US",
+          "America/Nome": "US",
+          "America/Adak": "US",
+          "Pacific/Honolulu": "US",
+          "Asia/Ho_Chi_Minh": "VN",
+          "Africa/Johannesburg": "ZA",
+          "Asia/Calcutta": "IN",
+          "Asia/Saigon": "VN",
+          "Europe/Kiev": "UA",
+          "America/Buenos_Aires": "AR",
+          "America/Montreal": "CA",
+          "Europe/Belfast": "GB",
+          "Australia/Canberra": "AU",
+          "Australia/ACT": "AU",
+          "Australia/NSW": "AU",
+          "Australia/Victoria": "AU",
+          "Australia/Queensland": "AU",
+          "US/Eastern": "US",
+          "US/Central": "US",
+          "US/Mountain": "US",
+          "US/Pacific": "US"
+        }
+      }
+    </script>
+    <!-- /bf-prices -->
+    <script>
+      // Local prices: the cards show pounds by default. Visitors elsewhere see their own App Store's
+      // prices in their currency, picked from the browser's time zone (nothing is sent anywhere);
+      // ?country=US overrides it. The table above is written by qdev-asc/bf-localize.mjs.
+      (() => {
+        try {
+          const { prices, zones } = JSON.parse(document.getElementById('bf-prices').textContent);
+          const asked = new URLSearchParams(location.search).get('country');
+          const zone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+          let country = (asked || zones[zone] || '').toUpperCase();
+          if (!prices[country] && !zone) {
+            country = ((navigator.language || '').split('-')[1] || '').toUpperCase();
+          }
+          const local = prices[country];
+          if (!local || country === 'GB') return;
+          // Whole amounts (₹1,999, ¥2,000) without decimals, as the App Store writes them.
+          const money = (value) =>
+            new Intl.NumberFormat(navigator.language || 'en', {
+              style: 'currency',
+              currency: local.c,
+              ...(Number.isInteger(value)
+                ? { minimumFractionDigits: 0, maximumFractionDigits: 0 }
+                : {}),
+            }).format(value);
+          const values = {
+            m0: local.m[0],
+            m1: local.m[1],
+            y0: local.y[0],
+            y1: local.y[1],
+            l0: local.l[0],
+            l1: local.l[1],
+            ypm: local.y[1] / 12,
+          };
+          document.querySelectorAll('[data-price]').forEach((el) => {
+            el.textContent = money(values[el.dataset.price]);
+          });
+          const where = new Intl.DisplayNames([navigator.language || 'en'], { type: 'region' }).of(
+            country,
+          );
+          const note = document.getElementById('price-region');
+          note.textContent = `Prices for ${where}, in ${local.c}. The App Store shows your exact price before you pay.`;
+          note.hidden = false;
+        } catch {
+          // The pound prices stay.
+        }
+      })();
+    </script>
 
     <script>
       (() => {
