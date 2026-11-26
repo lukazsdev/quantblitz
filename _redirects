@@ -1,2 +1,4 @@
 # Invite links (decision G2): quantblitz.app/i/QB-XXXXX shows the invite page with that code.
 /i/*  /i/index.html  200
+# Race links (decision T16): quantblitz.app/r/7K2M9 shows the race page with that room code.
+/r/*  /r/index.html  200
