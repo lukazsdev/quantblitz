@@ -2,6 +2,8 @@
 /i/*  /i/index.html  200
 # Race links (decision T16): quantblitz.app/r/7K2M9 shows the race page with that room code.
 /r/*  /r/index.html  200
+# Pit links (decision T18): quantblitz.app/p/7K2M9 shows the pit page with that room code.
+/p/*  /p/index.html  200
 # The quant blitz Discord (decision G4). The app links here, so the invite can be replaced without an update.
 /discord  https://discord.gg/RPMY3eZCNC  302
 /discord/  https://discord.gg/RPMY3eZCNC  302
